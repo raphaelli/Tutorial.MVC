@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Tutorial.Model.DTO.StudentInfoDTO>
+﻿@model Tutorial.Model.DTO.HomeDTO
     @{
         Layout = null;
     }
@@ -12,9 +12,9 @@
     </head>
     <body>
         <ul>
-            @foreach (var a in Model)
+            @foreach (var a in Model.Students)
             {
-            <li>@a.Id - @a.Name (@a.Age)</li>       
+                <li>@a.Id - @a.Name (@a.Age)</li>       
             }
         </ul>
         

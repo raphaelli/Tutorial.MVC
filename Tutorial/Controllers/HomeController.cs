@@ -24,8 +24,11 @@ namespace Tutorial.Controllers
                 Name = $"{x.stuFirstName}{x.stuLastName}",
                 Age = DateTime.Now.Subtract(x.stuBirthDate).Days / 365
             });
+            var vm = new HomeDTO {
+                Students = vms
+            };
 
-            return View(vms);
+            return View(vm);
         }
     }
 }
