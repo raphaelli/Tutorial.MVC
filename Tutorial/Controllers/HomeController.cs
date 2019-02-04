@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using Tutorial.Model;
+using Tutorial.Model.DTO;
 using Tutorial.Services;
 
 namespace Tutorial.Controllers
@@ -15,8 +17,15 @@ namespace Tutorial.Controllers
         public IActionResult Index()
         {
             var list = _repository.GetAll();
-            
-            return View(list);
+            //使用DTO进行转换
+            var vms = list.Select(x => new StudentInfoDTO
+            {
+                Id = x.stuId,
+                Name = $"{x.stuFirstName}{x.stuLastName}",
+                Age = DateTime.Now.Subtract(x.stuBirthDate).Days / 365
+            });
+
+            return View(vms);
         }
     }
 }
