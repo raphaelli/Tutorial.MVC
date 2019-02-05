@@ -14,7 +14,11 @@ namespace Tutorial
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IRepository<Student>,InMemoryRepository>();
+            //Scoped 每次HTTP请求添加一次
+            //services.AddScoped<IRepository<Student>,InMemoryRepository>();
+            //单例模式，每次运行添加一次
+            services.AddSingleton<IRepository<Student>, InMemoryRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

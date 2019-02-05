@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using Tutorial.Model;
@@ -29,6 +30,34 @@ namespace Tutorial.Controllers
             };
 
             return View(vm);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var studen = _repository.GetById(id);
+            if (studen == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(studen);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateStudent(StudentCreate student)
+        {
+            var newStudent = new Student
+            {
+                stuFirstName = student.stuFirstName,
+                stuLastName = student.stuLastName,
+                stuBirthDate = student.stuBirthDate,
+                stuGender = student.stuGender
+            };
+            var newModel =_repository.Add(newStudent);
+            return View("Detail",newModel);
         }
     }
 }

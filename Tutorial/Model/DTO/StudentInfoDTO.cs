@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Tutorial.Model.DTO
+﻿namespace Tutorial.Model.DTO
 {
     public class StudentInfoDTO
     {
