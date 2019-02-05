@@ -47,17 +47,27 @@ namespace Tutorial.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CreateStudent(StudentCreate student)
         {
-            var newStudent = new Student
+            if (ModelState.IsValid)
             {
-                stuFirstName = student.stuFirstName,
-                stuLastName = student.stuLastName,
-                stuBirthDate = student.stuBirthDate,
-                stuGender = student.stuGender
-            };
-            var newModel =_repository.Add(newStudent);
-            return RedirectToAction(nameof(Detail),new { id=newModel.stuId});
+                var newStudent = new Student
+                {
+                    stuFirstName = student.stuFirstName,
+                    stuLastName = student.stuLastName,
+                    stuBirthDate = student.stuBirthDate,
+                    stuGender = student.stuGender
+                };
+                var newModel = _repository.Add(newStudent);
+                return RedirectToAction(nameof(Detail), new { id = newModel.stuId });
+
+            }
+            else
+            {
+                return View("Create");
+            }
+            
         }
     }
 }

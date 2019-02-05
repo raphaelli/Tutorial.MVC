@@ -1,5 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model Tutorial.Model.Student
+@model Tutorial.Model.DTO.StudentCreate
 @using Tutorial.Model.DAO
 
 @{
@@ -13,17 +13,34 @@
     <meta name="viewport" content="width=device-width" />
     <title>Create</title>
 
-    
+
 
 </head>
 <body>
     <h1>    Create Student</h1>
     <form asp-controller="home" asp-action="CreateStudent" method="post">
-        <input asp-for="stuFirstName" />
-        <input asp-for="stuLastName" />
-        <input asp-for="stuBirthDate" type="date" />
-        <select asp-for="stuGender" asp-items="Html.GetEnumSelectList<Gender>()">
-        </select>
+        <div>
+            <label asp-for="stuFirstName"></label> 
+            <input asp-for="stuFirstName" />
+            <span asp-validation-for="stuFirstName"></span>
+        </div>
+        <div>
+            <label asp-for="stuLastName"></label>
+            <input asp-for="stuLastName" />
+            <span asp-validation-for="stuLastName"></span>
+
+        </div>
+        <div>
+            <label asp-for="stuBirthDate"></label>
+            <input asp-for="stuBirthDate" type="date" />
+            <span asp-validation-for="stuBirthDate"></span>
+
+        </div>
+        <div>
+            <label asp-for="stuGender"></label>
+            <select asp-for="stuGender" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+            <span asp-validation-for="stuGender"></span>
+        </div>
 
 
         <input type="submit" name="save" value="添加" />
