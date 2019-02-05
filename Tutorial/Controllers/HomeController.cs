@@ -37,7 +37,7 @@ namespace Tutorial.Controllers
             var studen = _repository.GetById(id);
             if (studen == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(studen);
         }
@@ -57,7 +57,7 @@ namespace Tutorial.Controllers
                 stuGender = student.stuGender
             };
             var newModel =_repository.Add(newStudent);
-            return View("Detail",newModel);
+            return RedirectToAction(nameof(Detail),new { id=newModel.stuId});
         }
     }
 }
