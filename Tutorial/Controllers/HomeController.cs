@@ -25,7 +25,8 @@ namespace Tutorial.Controllers
                 Name = $"{x.stuFirstName}{x.stuLastName}",
                 Age = DateTime.Now.Subtract(x.stuBirthDate).Days / 365
             });
-            var vm = new HomeDTO {
+            var vm = new HomeDTO
+            {
                 Students = vms
             };
 
@@ -47,7 +48,6 @@ namespace Tutorial.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult CreateStudent(StudentCreate student)
         {
             if (ModelState.IsValid)
@@ -67,7 +67,7 @@ namespace Tutorial.Controllers
             {
                 return View("Create");
             }
-            
+
         }
     }
 }

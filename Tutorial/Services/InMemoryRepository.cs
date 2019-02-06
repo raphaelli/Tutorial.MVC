@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Tutorial.Model;
 using Tutorial.Model.DAO;
-using Tutorial.Model.DTO;
 
 namespace Tutorial.Services
 {

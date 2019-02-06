@@ -29,6 +29,12 @@ namespace Tutorial
             });
             //Scoped 每次HTTP请求添加一次
             //services.AddScoped<IRepository<Student>,InMemoryRepository>();
+            //使用MSSQL LOCALDB
+            //var ConnectionString = Configuration["ConnectionStrings:DefaultConnection"]; 
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
             //单例模式，每次运行添加一次
             services.AddSingleton<IRepository<Student>, InMemoryRepository>();
 
@@ -43,6 +49,11 @@ namespace Tutorial
             }
 
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                RequestPath ="/node_modules",
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "node_modules"))
+            });
 
             //app.UseMvcWithDefaultRoute();
 
@@ -51,10 +62,6 @@ namespace Tutorial
                 b.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
             });
         }
     }
