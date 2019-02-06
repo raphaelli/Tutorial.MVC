@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 using Tutorial.Data;
 using Tutorial.Model;
 using Tutorial.Services;
@@ -23,17 +25,12 @@ namespace Tutorial
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-            });
             //Scoped 每次HTTP请求添加一次
             //services.AddScoped<IRepository<Student>,InMemoryRepository>();
             //使用MSSQL LOCALDB
-            //var ConnectionString = Configuration["ConnectionStrings:DefaultConnection"]; 
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
             //单例模式，每次运行添加一次
             services.AddSingleton<IRepository<Student>, InMemoryRepository>();

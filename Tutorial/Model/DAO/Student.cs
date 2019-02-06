@@ -8,7 +8,9 @@ namespace Tutorial.Model
     {
         [Key]
         public int stuId { get; set; }
+        [Required]
         public string stuFirstName { get; set; }
+        [Required]
         public string stuLastName { get; set; }
         public DateTime stuBirthDate { get; set; }
         public Gender stuGender { get; set; }
