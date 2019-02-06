@@ -5,11 +5,14 @@
 }
 
 <!DOCTYPE html>
-
+<script src="~/node_modules/layui-src/dist/layui.js"></script>
+<link href="~/node_modules/layui-src/dist/css/layui.css" rel="stylesheet" />
+<script src="~/node_modules/jquery/dist/jquery.min.js"></script>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+
 </head>
 <body>
     <ul>
@@ -23,7 +26,7 @@
     </ul>
 
     <div>
-        <a asp-action="Create">添加</a>
+        <a asp-action="Create" class="layui-btn">添加</a>
     </div>
 
 </body>
