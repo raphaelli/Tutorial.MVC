@@ -48,7 +48,6 @@ namespace Tutorial.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult CreateStudent(StudentCreate student)
         {
             if (ModelState.IsValid)
