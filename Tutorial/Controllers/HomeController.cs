@@ -10,7 +10,7 @@ namespace Tutorial.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<Student> _repository;
+        private readonly IRepository<Student> _repository; 
         public HomeController(IRepository<Student> repository)
         {
             _repository = repository;

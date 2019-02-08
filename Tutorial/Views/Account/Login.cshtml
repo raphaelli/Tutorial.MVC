@@ -1,0 +1,31 @@
+﻿@model Tutorial.Model.DTO.LoginDTO
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <form asp-action="Login" asp-controller="Account" method="post">
+        <div>
+            <label asp-for="UserName"></label>
+            <input type="text" name="UserName" asp-for="UserName" value="" />
+            <span asp-validation-for="UserName"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label>
+            <input type="Password" name="Password" asp-for="Password" value="" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <input type="submit" value="提交" />
+        </div>
+    </form>
+</body>
+</html>
