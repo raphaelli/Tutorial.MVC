@@ -52,7 +52,7 @@ namespace Tutorial.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterDTO register)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = new IdentityUser
                 {
